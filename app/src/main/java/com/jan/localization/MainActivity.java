@@ -20,7 +20,7 @@ package com.jan.localization;
         import androidx.core.app.ActivityCompat;
         import androidx.core.content.ContextCompat;
 
-        import java.util.logging.Logger;
+        import static android.content.ContentValues.TAG;
 
 public class MainActivity extends Activity implements LocationListener {
     protected LocationManager locationManager;
@@ -41,14 +41,15 @@ public class MainActivity extends Activity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.i(TAG, "checkLocationPermission: hey there!!!!!!!");
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {  //&& ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
 //            Toast.makeText(MainActivity.this, "First enable LOCATION ACCESS in settings.", Toast.LENGTH_LONG).show();
 //            return;
-            Intent intent = new Intent(getApplicationContext(),KilometersPerHour.class); // przejscie do drugiego activity
+            Intent intent = new Intent(getApplicationContext(), MainDisplay.class); // przejscie do KilometersPerHour activity
             startActivity(intent);
-        }
+        }else checkLocationPermission();
+
 
 //        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 //        speed = (TextView) findViewById(R.id.speed);
@@ -56,8 +57,7 @@ public class MainActivity extends Activity implements LocationListener {
 //        speed.setText("Waiting for GPS");
 //
 //        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-        checkLocationPermission();
-//        checkLocationPermission2();
+
     }
 
 
@@ -99,15 +99,10 @@ public class MainActivity extends Activity implements LocationListener {
         Log.d("Latitude","status");
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//    public void  checkLocationPermission2(){
-//        ActivityCompat.requestPermissions(this,
-//                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                1);
-//
-//    }
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     public boolean checkLocationPermission() {
@@ -172,7 +167,7 @@ public class MainActivity extends Activity implements LocationListener {
                         //Request location updates:
 //                        locationManager.requestLocationUpdates(provider, 400, 1, this);  // oryginalna linijka
 
-                        Intent intent = new Intent(getApplicationContext(),KilometersPerHour.class); //przejscie do drugiego activity
+                        Intent intent = new Intent(getApplicationContext(), MainDisplay.class); //przejscie do drugiego activity
                         startActivity(intent);
 
 //                        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);   // moje 5 linijek

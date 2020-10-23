@@ -4,14 +4,15 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".KilometersPerHour">
+    android:id="@+id/mainDisplay"
+    tools:context=".MainDisplay">
 
     <TextView
         android:id="@+id/latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="latitude"
+        android:text="Latitude"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.075"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
-        android:text="longitude"
+        android:text="Longitude"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="@+id/latitude"
         app:layout_constraintHorizontal_bias="0.6"
@@ -49,7 +50,7 @@
         android:id="@+id/altitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="altitude"
+        android:text="Altitude"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/latitude"
@@ -57,4 +58,15 @@
         app:layout_constraintStart_toStartOf="@+id/latitude"
         app:layout_constraintTop_toBottomOf="@+id/latitude"
         app:layout_constraintVertical_bias="0.108" />
+
+    <TextView
+        android:id="@+id/max_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="maxSpeed"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
