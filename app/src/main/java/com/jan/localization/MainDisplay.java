@@ -26,7 +26,7 @@ public class MainDisplay extends Activity implements LocationListener {
     private static boolean kmph = true;
     private static boolean mps;
     private static boolean ktsph;
-    private static double maxSpeed = 0.0;
+    private static double maxSpeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +102,8 @@ public class MainDisplay extends Activity implements LocationListener {
             this.txtSpeed.setText(returnRounded(speed) + " m/s");
             this.txtMaxSpeed.setText("max: " + returnRounded(maxSpeed) + " m/s");
         }else  if(ktsph){
-            this.txtSpeed.setText(returnRounded(speed * 3.6 * 1.852) + " kts");
-            this.txtMaxSpeed.setText("max: " + returnRounded(maxSpeed * 3.6 * 1.852) + " kts");
+            this.txtSpeed.setText(returnRounded(speed * 3.6 / 1.852) + " kts");
+            this.txtMaxSpeed.setText("max: " + returnRounded(maxSpeed * 3.6 / 1.852) + " kts");
         }
 
     }
@@ -138,15 +138,20 @@ public class MainDisplay extends Activity implements LocationListener {
         finishAffinity();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        maxSpeed = 0.0;
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        maxSpeed = 0.0;
+//    }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        maxSpeed = 0.0;
-    }
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        maxSpeed = 0.0;
+//    }
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//    }
 }
