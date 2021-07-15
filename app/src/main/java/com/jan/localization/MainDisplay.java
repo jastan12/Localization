@@ -109,7 +109,7 @@ public class MainDisplay extends Activity implements LocationListener {
     }
 
     private static String returnRounded(Double inValue){
-        return (inValue < 10 ? String.valueOf(inValue).substring(0,3) : String.valueOf(inValue).split("\\.")[0]);
+        return (inValue < 100 ? String.valueOf(inValue).substring(0,3) : String.valueOf(inValue).split("\\.")[0]);
     }
 
     private void maxSpeed(double speed){
