@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Localization</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="speed">speed</string>
+    <string name="altitude">Altitude</string>
+    <string name="maxspeed">maxSpeed</string>
 </resources>
