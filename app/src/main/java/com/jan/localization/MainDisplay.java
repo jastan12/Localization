@@ -17,6 +17,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Lifecycle;
 
+import org.decimal4j.util.DoubleRounder;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -91,19 +93,21 @@ public class MainDisplay extends AppCompatActivity implements LocationListener {
         txtAccuracy.setText("Accuracy: " + String.valueOf(location.getAccuracy()));
         txtLon.setText("Longitude: " + String.valueOf(location.getLongitude()).substring(0,7));
         txtLat.setText("Latitude: "  + String.valueOf(location.getLatitude()).substring(0,7));
-        txtAlt.setText("Altitude: " + returnRounded(location.getAltitude() - 30.) + " m");
+        txtAlt.setText("Altitude: " + returnRounded(location.getAltitude() - 30., 3) + " m");
 
         double speed = location.getSpeed();
         maxSpeed(speed);
         if (kmph) {
-            txtSpeed.setText(returnRounded(speed * 3.6) + " km/h");
-            txtMaxSpeed.setText("max: " + returnRounded(maxSpeed * 3.6) + " km/h");
+//            txtSpeed.setText(returnRounded(speed * 3.6, 5) + " km/h");
+            txtSpeed.setText(String.valueOf(DoubleRounder.round(speed * 3.6 ,1)) + " km/h");
+//            txtMaxSpeed.setText("max: " + returnRounded(maxSpeed * 3.6, 3) + " km/h");
+            txtMaxSpeed.setText(String.valueOf(DoubleRounder.round(maxSpeed * 3.6 ,1)) + " km/h");
         }else if (mps) {
-            txtSpeed.setText(returnRounded(speed) + " m/s");
-            txtMaxSpeed.setText("max: " + returnRounded(maxSpeed) + " m/s");
+            txtSpeed.setText(returnRounded(speed, 3) + " m/s");
+            txtMaxSpeed.setText("max: " + returnRounded(maxSpeed, 3) + " m/s");
         }else  if(kts){
-            txtSpeed.setText(returnRounded(speed * 3.6 / 1.852) + " kts");
-            txtMaxSpeed.setText("max: " + returnRounded(maxSpeed * 3.6 / 1.852) + " kts");
+            txtSpeed.setText(returnRounded(speed * 3.6 / 1.852, 3) + " kts");
+            txtMaxSpeed.setText("max: " + returnRounded(maxSpeed * 3.6 / 1.852, 3) + " kts");
         }
 
 
@@ -134,8 +138,8 @@ public class MainDisplay extends AppCompatActivity implements LocationListener {
 
     }
 
-    private static String returnRounded(double inValue){
-        return (inValue < 100 ? String.valueOf(inValue).substring(0,4) : String.valueOf(inValue).split("\\.")[0]);
+    private static String returnRounded(double inValue, int precision){
+        return (inValue < 100 ? String.valueOf(inValue).substring(0,precision) : String.valueOf(inValue).split("\\.")[0]);
     }
 
     private void maxSpeed(double speed){
